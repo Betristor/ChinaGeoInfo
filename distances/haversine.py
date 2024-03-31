@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def haversine(lon1, lat1, lon2, lat2):
+def haversine(lon1, lat1, lon2, lat2, unit='km'):
     """Calculate the great circle distance between two points on the earth (specified in decimal degrees)
 
     Args:
@@ -21,5 +21,8 @@ def haversine(lon1, lat1, lon2, lat2):
     dlat = lat2 - lat1
     a = np.sin(dlat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2) ** 2
     c = 2 * np.arcsin(np.sqrt(a))
-    r = 6371  # Radius of earth in kilometers. Use 3956 for miles
+    if unit == 'km':
+        r = 6371  # Radius of earth in kilometers. Use 3956 for miles
+    else:
+        r = 3956  # Radius of earth in miles. Use 6371 for kilometers
     return c * r
